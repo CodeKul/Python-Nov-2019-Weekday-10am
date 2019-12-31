@@ -46,3 +46,39 @@ print(df_corr)
 
 df['Cost'] = df.Cost.astype(object) 
 print(df.info())
+
+# - Manipulating/Indexing/sorting dataset
+
+print(df.iloc[2:5,:])
+
+print(df.iloc[0:3, 2])
+# df.iloc[:,:]
+print(df.iloc[6:, 2:])
+# df.iloc[:, 1]
+
+print(df.loc[:, 'Cost'])
+print(df.loc[:6, 'Item'])
+print(df.loc[:6, 'Item':'Tax'])
+df['Tax'] = 1	#sets value 1 to entire column
+print(df)
+
+# applying lambda functions:
+f = lambda x: x*2
+df['Tax'] = df['Tax'].apply(f)
+print(df)
+
+# sorting:
+print(df.sort_values(by='Cost', ascending=True))
+
+# Filtering:
+# df['Cost'] > 6	# will get True False values for every row in column1 which are greater than 6
+
+filter1 = df['Cost'] > 6
+filtered_df = df[filter1]
+
+filter2 = (df['Cost'] > 6) & (df['Cost'] < 10)
+filtered_df = df[filter2]
+print(filtered_df)
+
+
+# https://www.analyticsvidhya.com/blog/2018/05/24-ultimate-data-science-projects-to-boost-your-knowledge-and-skills/
